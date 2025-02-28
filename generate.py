@@ -1,5 +1,9 @@
 import snippet_functions as snf
+import os
 from random import randint
+
+c_compiler = "gcc"
+number_of_files = 100
 
 snippet_types = {
     0: snf.ari_snippet,
@@ -11,7 +15,10 @@ snippet_types = {
     6: snf.for_for_ari_snippet
 }
 
-for filenum in range(100):
+for filenum in range(number_of_files):
     with open(f"c_files/{filenum}.c", 'w') as file:
         file.write(snippet_types[randint(0,6)]())
+
+for filenum in range(number_of_files):
+    os.system(f"{c_compiler} -S c_files/{filenum}.c -o asm_files/{filenum}.s ")
 
