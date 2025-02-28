@@ -1,4 +1,5 @@
 c_files/*.c
 assembly/*.s
+asm_files/*.s
 test*
 __pycache__
