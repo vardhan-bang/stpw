@@ -1,3 +1,4 @@
 c_files/*.c
+assembly/*.s
 test*
 __pycache__
