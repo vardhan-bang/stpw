@@ -1,5 +1,6 @@
 c_files/*.c
 assembly/*.s
 asm_files/*.s
+dataset.csv
 test*
 __pycache__
