@@ -4,3 +4,5 @@ asm_files/*.s
 dataset.csv
 test*
 __pycache__
+data.csv
+venv/*

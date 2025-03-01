@@ -1,5 +1,5 @@
 import snippet_functions as snf
-import sys
+import sys, csv
 from random import randint
 
 number_of_files = int(sys.argv[1])
@@ -14,8 +14,16 @@ snippet_types = {
     6: snf.for_for_ari_snippet
 }
 
+data = open("data.csv", 'w')
+writer = csv.writer(data)
+writer.writerow(['snippet_type'])
+
 for filenum in range(number_of_files):
     with open(f"c_files/{filenum}.c", 'w') as file:
-        file.write(snippet_types[randint(0,6)]())
+        snippet_type = randint(0,6)
+        file.write(snippet_types[snippet_type]())
+        writer.writerow([snippet_type])
+
+data.close()
 
 

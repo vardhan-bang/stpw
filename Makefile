@@ -1,3 +1,6 @@
+data:
+	python3 src/generate_dataset.py
+
 asm:
 	python3 src/generate_asm.py $(cc)
 
