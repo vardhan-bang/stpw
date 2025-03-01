@@ -14,7 +14,7 @@ snippet_types = {
     6: snf.for_for_ari_snippet
 }
 
-data = open("data.csv", 'w')
+data = open("datasets/data.csv", 'w')
 writer = csv.writer(data)
 writer.writerow(['snippet_type'])
 

@@ -1,5 +1,5 @@
-data:
-	python3 src/generate_dataset.py
+model:
+	jupyter lab notebooks/model.ipynb
 
 asm:
 	python3 src/generate_asm.py $(cc)
