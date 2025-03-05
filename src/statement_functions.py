@@ -1,23 +1,21 @@
 from random import randint, choice
+import sys
+
+min_value = int(sys.argv[2])
+max_value = int(sys.argv[3])
 
 comparison = ['<', '>', '<=', '>=', '==', '!=']
 arithmetic = ['+=', '-=']
 unary = ['++', '--']
 
-int_min = 0
-int_max = 100 
-
-def random_int():
-    return randint(int_min, int_max)
-
 def init_statement():
-    return f"int num = {random_int()};"
+    return f"int num = {randint(min_value, max_value)};"
 
 def ari_statement():
-    return f"num {choice(arithmetic)} {random_int()};"
+    return f"num {choice(arithmetic)} {randint(min_value, max_value)};"
 
 def if_statement():
-    return f"if(num {choice(comparison)} {random_int()})"
+    return f"if(num {choice(comparison)} {randint(min_value, max_value)})"
 
 def for_statement(temp):
-    return f"for(int {temp} = {random_int()}; {temp} {choice(comparison)} {random_int()}; {temp}{choice(unary)})"
+    return f"for(int {temp} = {randint(min_value, max_value)}; {temp} {choice(comparison)} {randint(min_value, max_value)}; {temp}{choice(unary)})"

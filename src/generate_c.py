@@ -1,6 +1,6 @@
-import snippet_functions as snf
 import sys, csv
 from random import randint
+import snippet_functions as snf
 
 number_of_files = int(sys.argv[1])
 
