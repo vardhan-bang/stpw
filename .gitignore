@@ -1,7 +1,10 @@
 c_files/*.c
+.venv/
 assembly/*.s
 asm_files/*.s
 dataset.csv
+STPW_Proposal.pdf
+ganttchart.png
 test*
 __pycache__
 data.csv
@@ -10,3 +13,4 @@ venv
 venv/*.py
 notebooks/.*ipynb_checkpoints
 datasets/*.csv
+.ipynb_checkpoints
