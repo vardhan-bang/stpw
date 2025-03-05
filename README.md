@@ -10,7 +10,11 @@ make c n={number of files}
 ``` bash
 make asm cc={c compiler}
 ```
-### 4. To delete all .c and .s files
+### 4. Generate datasets
+``` bash
+make data
+```
+### 5. To delete all temporary files
 ``` bash
 make clean
 ```
