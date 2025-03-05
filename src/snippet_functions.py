@@ -2,7 +2,8 @@ import statement_functions as stf
 
 def ari_snippet():
     return f'''int main() {{
-    clear
+    {stf.init_statement()}
+    {stf.ari_statement()}
     return 0;
 }}
 '''
