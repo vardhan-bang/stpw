@@ -9,10 +9,14 @@ MIN_VALUE = 1
 #max numeric value in c snippets
 MAX_VALUE = 100
 
-data:
-	python3 src/generate_data.py
+.PHONY all clean
 
-asm:
+all: data
+
+data: asm
+	python3 src/generate_data.py $(ARCH) $(CC)
+
+asm: c
 	python3 src/generate_asm.py $(CC)
 
 c:

@@ -1,23 +1,9 @@
-import csv, os
+import csv, os, sys
 import pandas as pd
+from categories import instruction_types
 
-instruction_types = {
-    #MEMORY READ/WRITE INSTRUCTIONS
-    "movl": 0,
-    #JUMP INSTRUCTIONS
-    "jmp": 1,
-    "jle": 1,
-    "jne": 1,
-    "je": 1,
-    "jg": 1,
-    #ARITHMETIC INSTRUCTIONS
-    "addl": 2,
-    "subl": 2,
-    #COMPARISON INSTRUCTIONS
-    "cmpl": 3,
-    #LABEL
-    "label": 4
-}
+architecture = sys.argv[1]
+
 
 def clean_asm(asm_file):
     file = open(f"asm_files/{asm_file}", 'r')
