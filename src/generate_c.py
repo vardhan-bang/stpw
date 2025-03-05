@@ -14,12 +14,12 @@ snippet_types = {
     6: snf.for_for_ari_snippet
 }
 
-data = open("datasets/data.csv", 'w')
+data = open("datasets/snippet_type.csv", 'w')
 writer = csv.writer(data)
 writer.writerow(['snippet_type'])
 
 for filenum in range(number_of_files):
-    with open(f"c_files/{filenum}.c", 'w') as file:
+    with open(f"c_files/{filenum:05d}.c", 'w') as file:
         snippet_type = randint(0,6)
         file.write(snippet_types[snippet_type]())
         writer.writerow([snippet_type])

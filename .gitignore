@@ -9,4 +9,4 @@ venv/*
 venv
 venv/*.py
 notebooks/.*ipynb_checkpoints
-datasets/data.csv
+datasets/*.csv

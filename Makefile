@@ -10,3 +10,4 @@ c:
 clean:
 	rm -f c_files/*.c
 	rm -f asm_files/*.s
+	rm -f datasets/*.csv
