@@ -1,11 +1,26 @@
-data:
-	python3 src/generate_data.py
+# gcc or clang
+CC = gcc
+# x86 or arm
+ARCH = x86
+#number of data points
+N = 100
+#min numeric value in c snippets
+MIN_VALUE = 1
+#max numeric value in c snippets
+MAX_VALUE = 100
 
-asm:
-	python3 src/generate_asm.py $(cc)
+.PHONY all clean
+
+all: data
+
+data: asm
+	python3 src/generate_data.py $(ARCH) $(CC)
+
+asm: c
+	python3 src/generate_asm.py $(CC)
 
 c:
-	python3 src/generate_c.py $(n)
+	python3 src/generate_c.py $(N) $(MIN_VALUE) $(MAX_VALUE) 
 
 clean:
 	rm -f c_files/*.c

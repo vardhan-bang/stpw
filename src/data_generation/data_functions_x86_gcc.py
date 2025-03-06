@@ -1,7 +1,5 @@
-import csv, os
-import pandas as pd
-
 instruction_types = {
+
     #MEMORY READ/WRITE INSTRUCTIONS
     "movl": 0,
     #JUMP INSTRUCTIONS
@@ -40,20 +38,17 @@ def generate_asm_sequence(asm_list):
             asm_seq.append(instruction)
     return asm_seq
 
+def generate_asm_type_sequence(asm_seq):
+    type_seq = []
+    for instruction in asm_seq:
+        type_seq.append(instruction_types[instruction])
+    return type_seq
 
+def generate_value_seq(asm_list):
+    value_seq = []
+    for line in asm_list:
+        for component in line[1:]:
+            if component[0] == '$':
+                value_seq.append(int(component[1:]))
 
-snippet_types_df = pd.read_csv("datasets/snippet_type.csv")
-
-asm_files = os.listdir("asm_files")
-asm_files.remove(".gitkeep")
-asm_files = sorted(asm_files)
-asm_files_df = pd.DataFrame(data={'asm_file': asm_files})
-asm_files.to_csv("datasets/asm_files.csv", index=False)
-
-asm_clean_df = pd.DataFrame(data = asm_files_df['asm_file'].apply(clean_asm))
-asm_clean_df = asm_clean_df.rename(columns = {'asm_file':'asm_clean'})
-asm_clean_df.to_csv("datasets/asm_clean.csv", index=False)
-
-asm_seq_df = pd.DataFrame(data = asm_clean_df['asm_clean'].apply(generate_asm_sequence))
-asm_seq_df = asm_seq_df.rename(columns = {"asm_clean":"asm_seq"})
-asm_seq_df.to_csv("datasets/asm_seq.csv", index=False)
+    return value_seq

@@ -2,19 +2,20 @@
 
 ## Steps:
 ### 1. Create and activate virtual environment and install dependencies using requirements.txt
-### 2. Generate c files:
+### 2. set appropriate parameters in Makefile
+### 3. Generate c files:
 ``` bash
-make c n={number of files}
+make c
 ```
-### 3. Generate assembly files
+### 4. Generate assembly files
 ``` bash
-make asm cc={c compiler}
+make asm
 ```
-### 4. Generate datasets
+### 5. Generate datasets
 ``` bash
 make data
 ```
-### 5. To delete all temporary files
+### 6. To delete all temporary files
 ``` bash
 make clean
 ```
