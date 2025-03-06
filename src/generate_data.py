@@ -3,44 +3,11 @@ import pandas as pd
 from categories import instruction_types
 
 architecture = sys.argv[1]
+compiler = sys.argv[2]
 
-
-def clean_asm(asm_file):
-    file = open(f"asm_files/{asm_file}", 'r')
-    code = file.read().split('\n')
-    code = [line.strip() for line in code]
-    code = code[code.index('.cfi_def_cfa_register 6') + 1: code.index('movl\t$0, %eax')]
-    code = [line.split() for line in code]
-    for i, line in enumerate(code):
-        temp = [elem[:-1] if elem[-1]==',' else elem for elem in line]
-        code[i] = temp
-    return code
-
-def generate_asm_sequence(asm_list):
-    asm_seq = []
-    for line in asm_list:
-        instruction = line[0]
-        if instruction[:2] == ".L":
-            asm_seq.append('label')
-        else:
-            asm_seq.append(instruction)
-    return asm_seq
-
-def generate_asm_type_sequence(asm_seq):
-    type_seq = []
-    for instruction in asm_seq:
-        type_seq.append(instruction_types[instruction])
-    return type_seq
-
-def generate_value_seq(asm_list):
-    value_seq = []
-    for line in asm_list:
-        for component in line[1:]:
-            if component[0] == '$':
-                value_seq.append(int(component[1:]))
-
-    return value_seq
-
+if architecture == "x86":
+    if compiler == "gcc":
+        None
 snippet_types_df = pd.read_csv("datasets/snippet_type.csv")
 
 asm_files = os.listdir("asm_files")

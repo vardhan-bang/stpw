@@ -1,5 +1,3 @@
-import sys
-
 instruction_types = {
 
     #MEMORY READ/WRITE INSTRUCTIONS
