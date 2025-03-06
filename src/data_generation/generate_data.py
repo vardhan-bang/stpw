@@ -1,13 +1,20 @@
 import csv, os, sys
 import pandas as pd
-from categories import instruction_types
 
 architecture = sys.argv[1]
 compiler = sys.argv[2]
 
 if architecture == "x86":
     if compiler == "gcc":
-        None
+        from data_functions_x86_gcc import *
+    elif compiler == "clang":
+        from data_functions_x86_clang import *
+elif architecture == "arm":
+    if compiler == "gcc":
+        from data_functions_arm_gcc import *
+    elif compiler == "clang":
+        from data_functions_arm_clang import *
+
 snippet_types_df = pd.read_csv("datasets/snippet_type.csv")
 
 asm_files = os.listdir("asm_files")
