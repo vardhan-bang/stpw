@@ -17,6 +17,8 @@ instruction_types = {
     "label": 4
 }
 
+operator_instructions = ("jle", "jne", "je", "jg", "addl", "subl")
+
 def clean_asm(asm_file):
     file = open(f"asm_files/{asm_file}", 'r')
     code = file.read().split('\n')
@@ -41,10 +43,11 @@ def generate_asm_sequence(asm_list):
 def generate_asm_type_sequence(asm_seq):
     type_seq = []
     for instruction in asm_seq:
-        type_seq.append(instruction_types[instruction])
+        if instruction in instruction_types.keys():
+            type_seq.append(instruction_types[instruction])
     return type_seq
 
-def generate_value_seq(asm_list):
+def generate_value_sequence(asm_list):
     value_seq = []
     for line in asm_list:
         for component in line[1:]:
@@ -52,3 +55,11 @@ def generate_value_seq(asm_list):
                 value_seq.append(int(component[1:]))
 
     return value_seq
+
+def generate_operator_sequence(asm_seq):
+    operator_seq = []
+    for instruction in asm_seq:
+        if instruction in operator_instructions:
+            operator_seq.append(instruction)
+
+    return operator_seq
