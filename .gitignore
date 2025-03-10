@@ -14,3 +14,4 @@ venv/*.py
 notebooks/.*ipynb_checkpoints
 datasets/*.csv
 .ipynb_checkpoints
+STP_Jaydeep_Presentation.pptx
