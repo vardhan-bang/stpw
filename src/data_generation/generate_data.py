@@ -43,5 +43,5 @@ operator_seq_df = pd.DataFrame(data = asm_seq_df["asm_seq"].apply(generate_opera
 operator_seq_df = operator_seq_df.rename(columns = {"asm_seq": "operator_seq"})
 operator_seq_df.to_csv("datasets/operator_seq.csv", index = False)
 
-data_df = pd.DataFrame(data = {"input": asm_seq_df["asm_seq"], "target": snippet_types_df["snippet_type"]})
+data_df = pd.DataFrame(data = {"input": asm_type_seq_df["asm_type_seq"], "target": snippet_types_df["snippet_type"]})
 data_df.to_csv("datasets/data.csv", index = False)

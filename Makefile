@@ -3,7 +3,7 @@ CC = gcc
 # x86 or arm
 ARCH = x86
 #number of data points
-N = 100
+N = 50000
 #min numeric value in c snippets
 MIN_VALUE = 1
 #max numeric value in c snippets
