@@ -1,20 +1,21 @@
 instruction_types = {
-
+    #OTHER
+    "other": 0,
     #MEMORY READ/WRITE INSTRUCTIONS
-    "movl": 0,
+    "movl": 1,
     #JUMP INSTRUCTIONS
-    "jmp": 1,
-    "jle": 1,
+    "jmp": 2,
+    "jle": 2,
     "jne": 1,
-    "je": 1,
-    "jg": 1,
+    "je": 2,
+    "jg": 2,
     #ARITHMETIC INSTRUCTIONS
-    "addl": 2,
-    "subl": 2,
+    "addl": 3,
+    "subl": 3,
     #COMPARISON INSTRUCTIONS
-    "cmpl": 3,
+    "cmpl": 4,
     #LABEL
-    "label": 4
+    "label": 5
 }
 
 operator_instructions = ("jle", "jne", "je", "jg", "addl", "subl")
@@ -22,9 +23,8 @@ operator_instructions = ("jle", "jne", "je", "jg", "addl", "subl")
 def clean_asm(asm_file):
     file = open(f"asm_files/{asm_file}", 'r')
     code = file.read().split('\n')
-    code = [line.strip() for line in code]
-    code = code[code.index('.cfi_def_cfa_register 6') + 1: code.index('movl\t$0, %eax')]
-    code = [line.split() for line in code]
+    code = [line.strip().split() for line in code]
+    code = [line for line in code if line]
     for i, line in enumerate(code):
         temp = [elem[:-1] if elem[-1]==',' else elem for elem in line]
         code[i] = temp
@@ -34,10 +34,15 @@ def generate_asm_sequence(asm_list):
     asm_seq = []
     for line in asm_list:
         instruction = line[0]
-        if instruction[:2] == ".L":
-            asm_seq.append('label')
-        else:
+        if instruction[0] == '.':
+            if instruction[-1] == ':':
+                asm_seq.append("label")
+            else:
+                asm_seq.append("other")
+        elif instruction in instruction_types.keys():
             asm_seq.append(instruction)
+        else:
+            asm_seq.append("other")
     return asm_seq
 
 def generate_asm_type_sequence(asm_seq):
