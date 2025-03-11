@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippet Classifier</title>
+</head>
+<body>
+    <h1>Code Snippet Classifier</h1>
+    <form method="POST">
+        <label for="code_snippet">Enter Code Snippet (comma separated no space, max_length = 16):</label><br>
+        <input type="text" id="code_snippet" name="code_snippet" required><br><br>
+        <button type="submit">Classify Snippet</button>
+    </form>
+
+    {% if predicted_label %}
+    <h2>Predicted Snippet Type: {{ predicted_label }}</h2>
+    <h3>Snippet Number: {{ predicted_class }}</h3>
+    {% endif %}
+</body>
+</html>

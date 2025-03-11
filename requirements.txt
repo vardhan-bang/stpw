@@ -4,3 +4,4 @@ numpy
 tensorflow
 seaborn
 scikit-learn
+flask
