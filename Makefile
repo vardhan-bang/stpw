@@ -1,7 +1,7 @@
 # gcc or clang
-CC = gcc
+CC = clang
 # x86 or arm
-ARCH = x86
+ARCH = arm
 #number of data points
 N = 100
 #min numeric value in c snippets

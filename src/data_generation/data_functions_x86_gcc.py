@@ -42,6 +42,8 @@ def generate_asm_sequence(asm_list):
                 asm_seq.append("other")
         elif instruction in instruction_types.keys():
             asm_seq.append(instruction)
+        elif instruction[-1] == ':':
+            asm_seq.append("label")
         else:
             asm_seq.append("other")
     return asm_seq
@@ -62,10 +64,11 @@ def generate_value_sequence(asm_list):
 
     return value_seq
 
-def generate_operator_sequence(asm_seq):
+def generate_operator_sequence(asm_list):
     operator_seq = []
-    for instruction in asm_seq:
-        if instruction in operator_instructions:
-            operator_seq.append(instruction)
+    for line in asm_list:
+        for instruction in line:
+            if instruction in operator_instructions:
+                operator_seq.append(instruction)
 
     return operator_seq

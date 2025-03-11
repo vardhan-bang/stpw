@@ -11,13 +11,14 @@ instruction_types = {
     #ARITHMETIC INSTRUCTIONS
     "add": 3,
     "sub": 3,
+    "subs": 3,
     #COMPARISON INSTRUCTIONS
-    "subs": 4,
+    "cset": 4,
     #LABEL
     "label": 5
 }
 
-operator_instructions = ("eq", "ne", "cs", "hs", "cc", "lo", "mi", "pl", "vs", "vc", "hi", "ls", "ge", "lt", "gt", "le", "al")
+operator_instructions = ("subs", "sub", "add","eq", "ne", "cs", "hs", "cc", "lo", "mi", "pl", "vs", "vc", "hi", "ls", "ge", "lt", "gt", "le", "al")
 ignored_instructions = ("other", "label")
 
 def clean_asm(asm_file):
@@ -41,6 +42,8 @@ def generate_asm_sequence(asm_list):
                 asm_seq.append("other")
         elif instruction in instruction_types.keys():
             asm_seq.append(instruction)
+        elif instruction[-1] == ':':
+            asm_seq.append("label")
         else:
             asm_seq.append("other")
     return asm_seq
@@ -56,15 +59,16 @@ def generate_value_sequence(asm_list):
     value_seq = []
     for line in asm_list:
         for component in line[1:]:
-            if component[0] == '$':
+            if component[0] == '#' and component[-1] != ']':
                 value_seq.append(int(component[1:]))
 
     return value_seq
 
-def generate_operator_sequence(asm_seq):
+def generate_operator_sequence(asm_list):
     operator_seq = []
-    for instruction in asm_seq:
-        if instruction in operator_instructions:
-            operator_seq.append(instruction)
+    for line in asm_list:
+        for instruction in line:
+            if instruction in operator_instructions:
+                operator_seq.append(instruction)
 
     return operator_seq
