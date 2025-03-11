@@ -23,7 +23,8 @@ for filenum in range(number_of_files):
         snippet_type = randint(0,6)
         file.write(snippet_types[snippet_type]())
         writer.writerow([snippet_type])
-
+        print(f"Generated C files: {filenum}/{number_of_files}", end='\r')
+print(f"Generated C files: {number_of_files}/{number_of_files}")
 data.close()
 
 
