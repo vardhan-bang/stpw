@@ -1,0 +1,34 @@
+Import Lib:
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+Import Model and Label Encoders:
+model = load_model('../models/assembly_classifier_model_1.h5')
+encoder_classes = np.load('../encoders/encoder_classes.npy')
+
+Create Label Encoder and Snippet Labels:
+encoder = LabelEncoder()
+encoder.classes_ = encoder_classes
+snippet_labels = ["ari_snippet", "if_ari_snippet", "for_ari_snippet", "if_if_ari_snippet", 
+                  "if_for_ari_snippet", "for_if_ari_snippet", "for_for_ari_snippet"]
+
+Predict Snippet Type:
+def predictor(new_code):
+    encoded_new_code = encoder.transform(new_code).tolist()
+    max_length = 16
+    padded_new_code = pad_sequences([encoded_new_code], padding='post', maxlen=max_length)
+    predicted_snippet = model.predict(padded_new_code)
+    predicted_class = np.argmax(predicted_snippet)
+    print(f"Predicted Snippet Type: {snippet_labels[predicted_class]}")
+    print("Snippet Number: ", predicted_class)
+
+Example usage
+new_code = ['movl', 'cmpl', 'jle', 'addl', 'label']
+predictor(new_code)
+
+Output:
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 91ms/step
+Predicted Snippet Type: if_ari_snippet
+Snippet Number:  1
