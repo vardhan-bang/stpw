@@ -6,7 +6,7 @@ instruction_types = {
     #JUMP INSTRUCTIONS
     "jmp": 2,
     "jle": 2,
-    "jne": 1,
+    "jne": 2,
     "je": 2,
     "jg": 2,
     #ARITHMETIC INSTRUCTIONS
@@ -19,6 +19,7 @@ instruction_types = {
 }
 
 operator_instructions = ("jle", "jne", "je", "jg", "addl", "subl")
+ignored_instructions = ("other", "label")
 
 def clean_asm(asm_file):
     file = open(f"asm_files/{asm_file}", 'r')

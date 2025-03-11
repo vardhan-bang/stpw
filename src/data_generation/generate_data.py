@@ -38,12 +38,12 @@ common_end = -1
 for i in range(min_seq_len):
     flag_a, flag_b = True, True
     if flag_a:
-        if asm_seq_df["asm_seq"][0][common_begin] in ["other", "label"]:
+        if asm_seq_df["asm_seq"][0][common_begin] in ignored_instructions:
             common_begin += 1
         else:
              flag_a = False
     if flag_b:
-        if asm_seq_df["asm_seq"][0][common_end] in ["other", "label"]:
+        if asm_seq_df["asm_seq"][0][common_end] in ignored_instructions:
             common_end -= 1
         else:
             flag_b = False
