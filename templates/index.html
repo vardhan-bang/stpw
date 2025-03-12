@@ -1,21 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Snippet Classifier</title>
-</head>
-<body>
-    <h1>Code Snippet Classifier</h1>
-    <form method="POST">
-        <label for="code_snippet">Enter Code Snippet (comma separated no space, max_length = 16):</label><br>
-        <input type="text" id="code_snippet" name="code_snippet" required><br><br>
-        <button type="submit">Classify Snippet</button>
-    </form>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Code Snippet Classifier</title>
+		<style>
+			body {
+				font-family: "Courier", monospace;
+				background-image: url("https://azeria-labs.com/downloads/cheatsheetv1.3-1920x1080.png");
+				background-size: cover;
+				background-position: center;
+				height: 100vh;
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+				text-align: center;
+			}
 
-    {% if predicted_label %}
-    <h2>Predicted Snippet Type: {{ predicted_label }}</h2>
-    <h3>Snippet Number: {{ predicted_class }}</h3>
-    {% endif %}
-</body>
+			.container {
+				background-color: rgba(0, 0, 0, 0.7);
+				padding: 20px;
+				border-radius: 10px;
+				width: 90%;
+				max-width: 700px;
+				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+				overflow: hidden;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: "Courier", monospace;
+				color: white;
+			}
+
+			label {
+				font-size: 16px;
+				font-weight: bold;
+				display: block;
+				margin-bottom: 10px;
+			}
+
+			input,
+			button {
+				font-family: "Courier", monospace;
+				color: white;
+				background-color: transparent;
+				border: 1px solid white;
+				padding: 10px;
+				width: 90%;
+				max-width: 500px;
+				margin: 10px auto;
+				border-radius: 5px;
+				box-sizing: border-box;
+			}
+
+			input {
+				text-align: center;
+				display: block;
+			}
+
+			button {
+				cursor: pointer;
+				font-weight: bold;
+				transition: 0.3s ease;
+			}
+
+			button:hover {
+				background-color: white;
+				color: black;
+			}
+
+			.message {
+				font-size: 18px;
+				font-weight: bold;
+				margin-top: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Code Snippet Classifier</h1>
+			<form method="POST">
+				<label for="code_snippet"
+					>Enter a code snippet (comma-separated, max length: 16
+					characters)</label
+				>
+				<input type="text" id="code_snippet" name="code_snippet" required />
+				<button type="submit">Classify Snippet</button>
+			</form>
+
+			{% if predicted_label %}
+			<h2>Predicted Snippet Type: {{ predicted_label }}</h2>
+			<h3>Snippet Number: {{ predicted_class }}</h3>
+			{% else %}
+			<p class="message">Awaiting Classification...</p>
+			{% endif %}
+		</div>
+	</body>
 </html>

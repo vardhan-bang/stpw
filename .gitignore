@@ -16,3 +16,4 @@ datasets/*.csv
 .ipynb_checkpoints
 STP_Jaydeep_Presentation.pptx
 .DS_Store
+prev.txt
